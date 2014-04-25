@@ -88,7 +88,7 @@ Attractive properties of the TextSecure transport protocol:
 
 ## Message Encryption
 
-THe Message Encryption protocol specifies how each message is encrypted, and how a conversation is validated. It is orthogonal to whatever routing mechanism is used. For Newchat, the message encryption should include the following properties:
+The Message Encryption protocol specifies how each message is encrypted, and how a conversation is validated. It is orthogonal to whatever routing mechanism is used. For Newchat, the message encryption should include the following properties:
 
 * confidentiality: attacker should not be able to intercept a message and read it.
 * authenticity: the receiver should be assured the message has not been modified after being sent.
@@ -240,7 +240,7 @@ This system is by far the most simple, but does not support some of the features
 
 ## Key management
 
-Any attempt to make public-key cryptography easy on the user will necessitate more advanced software logic to automate proper maintenance of keys. If Key management is fairly straightforward, until something goes wrong. The tricky part of the key manager is deciding how to handle key revocation, resolving key conflicts, and replacing a key with a new version.
+Any attempt to make public-key cryptography easy on the user will necessitate more advanced software logic to automate proper maintenance of keys. Key management is fairly straightforward, until something goes wrong. The tricky part of the key manager is deciding how to handle key revocation, resolving key conflicts, and replacing a key with a new version.
 
 Requirements:
 
