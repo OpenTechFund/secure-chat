@@ -73,6 +73,9 @@ It is likely that Newchat will eventually need to combine elements of all three 
 * The content of every message should be encrypted using Newchat Message Encryption.
 * For mobile devices, the client should not keep an open TCP connection at all times. Instead, the device should establish a new connection after it has received a push notification that new content is available.
 * Newchat should not support continual presence notification. A traditional XMPP system is designed so that every user receives regular updates regarding the online status of their contacts. For security and performance reasons, Newchat should allow presence information only as a response to a specific query for it.
+
+[dgoulet] That is kind of a problem for online/offline state of clients which is quite important for someone to know relatively fast if a buddy is online or not. Maybe that does not fit in the "continual presence notification" so if not maybe be more specific?
+
 * Newchat should include additional extensions not part of existing XMPP protocol, such as the ability for a sender to request that the recipient client disable message logging.
 
 Although XMPP does not support secure routing that protects metadata, an XMPP based protocol could include extensions for it.
@@ -95,6 +98,9 @@ The Message Encryption protocol specifies how each message is encrypted, and how
 * optional non-repudiation: a message sender should have the option of providing proof that the message came from them or not.
 * perfect forward secrecy: attacker who obtains a shared ephemeral key should not be able to read prior messages.
 * unlinkable: the message encryption should into leak information that can be used to correlate traffic (mostly, this is the responsibility of the routing protocol, but the message encryption also needs to make it hard to map who is communicating with whom).
+
+[dgoulet] "should into leak" --> "should NOT leak" ? 
+
 * sequence integrity: an attacker should not be able to drop messages or replay messages without participants noticing.
 
 Additionally, the protocol should have these features:
@@ -126,6 +132,7 @@ The current TextSecure implementation of Axolotl simulates groups by maintaining
 
 There are several other schemes for end-to-end XMPP message encryption, including Encrypted Session Negotiation (ESession) and XMPP Transport Layer Security (XTLS). In addition to not being used by anyone, they don't support both asynchronous and forward secret messages at the same time.
 
+[dgoulet] So the mpOTR project (actually will be renamed but...) is ongoing and actually did some good progress recently after their summit in April 2014. This could be a good solution for group chat but might be problematic for instance in a high latency environment. Still, worth following their progress. One thing to consider here is that OTR has been around for 10 years and got way more scrutiny then Axolotl which addresses some missing use cases. In a perfect world, I would see this Newchat having all three methods of message encryption (OTR, Axolotl and mpOTR) and use the right one depending on the situation (low bandwidth, high latency, power limitation, group chat, etc...). This is easily doable nowadays by simply regurlarly detecting the ressourses. Example:
 
 ## Key Discovery and Validation
 
